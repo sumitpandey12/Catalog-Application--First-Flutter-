@@ -1,3 +1,4 @@
+import 'package:catalog_application1/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomeApp extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomeApp extends StatelessWidget {
           child: Text("Catalog"),
         ),
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
     );
   }
 }
