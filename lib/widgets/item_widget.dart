@@ -12,7 +12,7 @@ class ItemWidget extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: Card(
         child: ListTile(
-          leading: Image.network(item.imageurl),
+          leading: Image.network(item.image),
           title: Text(item.name),
           subtitle: Text(item.desc),
           trailing: Text(
