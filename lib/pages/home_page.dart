@@ -1,10 +1,12 @@
 import 'dart:convert';
 
-import 'package:catalog_application1/models/catalog.dart';
-import 'package:catalog_application1/widgets/drawer.dart';
-import 'package:catalog_application1/widgets/item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:catalog_application1/models/catalog.dart';
+import 'package:catalog_application1/widgets/themes.dart';
+import '../widgets/home_widget/catalog_header.dart';
+import '../widgets/home_widget/catalog_list.dart';
 
 class HomeApp extends StatefulWidget {
   const HomeApp({Key? key}) : super(key: key);
@@ -35,32 +37,21 @@ class _HomeAppState extends State<HomeApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Catalog App"),
-      ),
-      body: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-          ? GridView.builder(
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                final item = CatalogModel.items[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridTile(
-                      header: Text(item.name),
-                      footer: Text(item.desc),
-                      child: Padding(
-                        padding: const EdgeInsets.all(36.0),
-                        child: Image.network(item.image),
-                      )),
-                );
-              },
-              itemCount: CatalogModel.items.length,
-            )
-          : Center(
-              child: CircularProgressIndicator(),
+        backgroundColor: MyTheme.creamColor,
+        body: SafeArea(
+          child: Container(
+            padding: Vx.m32,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CatalogHeader(),
+                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                  CatalogList().expand()
+                else
+                  const CircularProgressIndicator().centered().expand(),
+              ],
             ),
-      drawer: MyDrawer(),
-    );
+          ),
+        ));
   }
 }
