@@ -4,16 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class CatalogModel {
-  static List<Item> items = [
-    Item(
-        1,
-        "Sumit Pandey",
-        "Android Developer",
-        "https://media-exp1.licdn.com/dms/image/C5603AQHw4o8wRSAQsQ/profile-displayphoto-shrink_200_200/0/1638617456666?e=2147483647&v=beta&t=hclciZ9f1nP_PFM2e5V-EZgMQL56HNHc8ube6b91r9g",
-        "#000000",
-        123),
-  ];
-
+  static List<Item> items = [];
 }
 
 class Item {
@@ -32,7 +23,6 @@ class Item {
     this.color,
     this.price,
   );
-
 
   Item copyWith({
     int? id,
@@ -76,7 +66,8 @@ class Item {
 
   String toJson() => json.encode(toMap());
 
-  factory Item.fromJson(String source) => Item.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Item.fromJson(String source) =>
+      Item.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -86,23 +77,23 @@ class Item {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Item &&
-      other.id == id &&
-      other.name == name &&
-      other.desc == desc &&
-      other.image == image &&
-      other.color == color &&
-      other.price == price;
+        other.id == id &&
+        other.name == name &&
+        other.desc == desc &&
+        other.image == image &&
+        other.color == color &&
+        other.price == price;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      desc.hashCode ^
-      image.hashCode ^
-      color.hashCode ^
-      price.hashCode;
+        name.hashCode ^
+        desc.hashCode ^
+        image.hashCode ^
+        color.hashCode ^
+        price.hashCode;
   }
 }
