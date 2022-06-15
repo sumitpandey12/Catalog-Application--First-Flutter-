@@ -15,10 +15,10 @@ class HomeDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: catalog.name.text.make(),
+        backgroundColor: Colors.transparent,
       ),
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: Vx.mH16,
@@ -26,12 +26,12 @@ class HomeDetails extends StatelessWidget {
             "\$${catalog.price}".text.bold.red800.xl.make(),
             ElevatedButton(
               onPressed: () {},
-              child: "Buy".text.make(),
+              child: "Add to cart".text.make(),
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(MyTheme.darkBullishColor),
+                      MaterialStateProperty.all(context.theme.buttonColor),
                   shape: MaterialStateProperty.all(StadiumBorder())),
-            ).wh(100, 40)
+            ).wh(130, 40)
           ],
         ).p16(),
       ),
@@ -50,19 +50,26 @@ class HomeDetails extends StatelessWidget {
                     edge: VxEdge.TOP,
                     child: Container(
                       height: context.screenHeight,
-                      color: Colors.white,
+                      color: context.cardColor,
                       width: context.screenWidth,
                       child: Column(
                         children: [
                           catalog.name.text
-                              .color(MyTheme.darkBullishColor)
+                              .color(context.theme.accentColor)
                               .xl4
                               .bold
                               .make(),
                           catalog.desc.text
                               .textStyle(context.captionStyle)
+                              .color(context.theme.accentColor)
                               .make(),
                           10.heightBox,
+                          "Filler text is text that shares some characteristics of a real written text, but is random or otherwise generated. It may be used to display a sample of fonts, generate text for testing, or to spoof an e-mail spam filter"
+                              .text
+                              .textStyle(context.captionStyle)
+                              .color(context.theme.accentColor)
+                              .make()
+                              .p24(),
                         ],
                       ).pOnly(top: 50.0),
                     ))),
